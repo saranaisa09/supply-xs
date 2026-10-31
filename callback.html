@@ -1,0 +1,36 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Izin TikTok</title>
+<link rel="stylesheet" href="gaya.css">
+</head>
+<body>
+<main>
+<header><img src="logo.png" alt=""><a href="./">supply.xs</a></header>
+<h1 id="judul">Izin TikTok</h1>
+<p id="pesan" class="redup">Memeriksa…</p>
+<code id="kode" hidden></code>
+<script>
+  // Halaman balik dari TikTok Login Kit: tampilkan kode sekali pakai supaya bisa ditukar menjadi token di perangkat Supply.xs.
+  const q = new URLSearchParams(location.search);
+  const kode = q.get("code"), galat = q.get("error");
+  const pesan = document.getElementById("pesan"), kotak = document.getElementById("kode");
+  if (kode) {
+    document.getElementById("judul").textContent = "Izin diterima ✓";
+    pesan.textContent = "Biarkan halaman ini terbuka. Claude akan membaca kode di bawah (berlaku beberapa menit, sekali pakai).";
+    kotak.textContent = kode;
+    kotak.hidden = false;
+  } else if (galat) {
+    document.getElementById("judul").textContent = "Izin dibatalkan";
+    pesan.textContent = "TikTok mengirim: " + galat + ". Ulangi dari awal kalau perlu.";
+  } else {
+    pesan.textContent = "Halaman ini dipakai saat memberi izin dari TikTok.";
+  }
+</script>
+<nav><a href="privacy.html">Kebijakan Privasi</a><a href="terms.html">Syarat Layanan</a></nav>
+</main>
+</body>
+</html>
